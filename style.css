@@ -1,27 +1,85 @@
-html, body {
-    margin: 10;
-    padding: 10;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    color: green;
+    background: black;
+    font-size: .75rem;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin: 0 0 10px 0;
     text-align: center;
+    letter-spacing: 2px;
 }
 
 .grid {
     width: 200px;
     height: 200px;
-    border: 2px solid black;
-    margin: 0 auto;
+    border: solid 2px #FFF;
     display: flex;
     flex-wrap: wrap;
+    box-sizing: content-box;
 }
 
-.square {
+.start {
+    margin: 0 0 10px 0;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 1em;
+}
+
+.score-display {
+    margin: 10px 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.score {
+    margin: 0;
+}
+
+.cell {
     width: 20px;
-    height: 20px;
+    height: 20xp;
 }
 
 .snake {
+    width: 20px;
+    height: 20px;
     background-color: green;
 }
 
-.apple {
-    background-color: blue;
+@media (min-width: 600px) {
+
+    body {
+        font-size: 1rem;
+    }
+
+    .grid {
+        width: 400px;
+        height: 400px;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+
+    .snake {
+        width: 40px;
+        height: 40px;
+        background-color: green;
+    }
 }
+
