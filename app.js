@@ -4,6 +4,11 @@ const squares = [];
 const snake = [2, 1, 0];
 const width = 10;
 let direction = 1;
+let appleIndex = 0;
+let speed = 0.9;
+let intervalTime = 1000;
+let timerId = 0;
+let score = 0;
 let scoreDisplay = document.querySelector(".score");
 
 function createGrid() {
@@ -20,28 +25,62 @@ createGrid();
 
 snake.forEach(index => squares[index].classList.add("snake"));
 
+
+function startGame() {
+  timerId = setInterval(move, intervalTime);
+}
+
 function move() {
+
+  if (
+      (snake[0] - width < 0 && direction === -width) ||
+      (snake[0] % width === 9 && direction === 1) ||
+      (snake[0] + width >= 100 && direction === width) ||
+      (snake[0] % width === 0 && direction === -1) ||
+      (squares[snake[0] + direction].classList.contains("snake"))
+  )
+    return clearInterval(timerId);
 
   const tail = snake.pop();
   squares[tail].classList.remove("snake");
   snake.unshift(snake[0] + direction);
   squares[snake[0]].classList.add("snake");
 
+  if (squares[snake[0]].classList.contains("apple")) {
+    snake.push(tail);
+    squares[tail].classList.add("snake");
+    squares[appleIndex].classList.remove("apple");
+    generateApples();
+    score++;
+    scoreDisplay.textContent = score;
+    clearInterval(timerId);
+    intervalTime = intervalTime * speed;
+    timerId = setInterval(move, intervalTime);
+  }
+
   }
 move();
 
-let movement = setInterval(move, 1000);
+
+function generateApples() {
+  do {
+    appleIndex = Math.floor(Math.random() * squares.length);
+  } while (squares[appleIndex].classList.contains("snake"));
+  squares[appleIndex].classList.add("apple");
+}
+generateApples();
 
 function control(e) {
   if (e.key === "ArrowUp") {
     direction = -width;
   } else if (e.key === "ArrowRight") {
-    direction = +1;
+    direction = 1;
   } else if (e.key === "ArrowDown") {
-    direction = +width;
+    direction = width;
   } else if (e.key === "ArrowLeft") {
     direction = -1;
   }
 }
 
 document.addEventListener("keydown", control);
+startBtn.addEventListener("click", startGame);
