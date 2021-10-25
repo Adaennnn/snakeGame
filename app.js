@@ -22,14 +22,6 @@ snake.forEach(index => squares[index].classList.add("snake"));
 
 function move() {
 
-  if (
-      (snake[0] % width === 0 && direction === -1) ||
-      (snake[0] % width === 9 && direction === +1) ||
-      (snake[0] - width < 0 && direction === -width) ||
-      (snake[0] + width >= width*width && direction === +width)
-  )
-    clearInterval(movement);
-
   const tail = snake.pop();
   squares[tail].classList.remove("snake");
   snake.unshift(snake[0] + direction);
@@ -42,16 +34,12 @@ let movement = setInterval(move, 1000);
 
 function control(e) {
   if (e.key === "ArrowUp") {
-    console.log("up");
     direction = -width;
   } else if (e.key === "ArrowRight") {
-    console.log("right");
     direction = +1;
   } else if (e.key === "ArrowDown") {
-    console.log("down");
     direction = +width;
   } else if (e.key === "ArrowLeft") {
-    console.log("left");
     direction = -1;
   }
 }
