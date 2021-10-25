@@ -32,3 +32,20 @@ move();
 
 let movement = setInterval(move, 1000);
 
+function control(e) {
+  if (e.key === "ArrowUp") {
+    console.log("up");
+    direction = -width;
+  } else if (e.key === "ArrowRight") {
+    console.log("right");
+    direction = +1;
+  } else if (e.key === "ArrowDown") {
+    console.log("down");
+    direction = +width;
+  } else if (e.key === "ArrowLeft") {
+    console.log("left");
+    direction = -1;
+  }
+}
+
+document.addEventListener("keydown", control);
