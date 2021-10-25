@@ -22,12 +22,20 @@ snake.forEach(index => squares[index].classList.add("snake"));
 
 function move() {
 
+  if (
+      (snake[0] % width === 0 && direction === -1) ||
+      (snake[0] % width === 9 && direction === +1) ||
+      (snake[0] - width < 0 && direction === -width) ||
+      (snake[0] + width >= width*width && direction === +width)
+  )
+    clearInterval(movement);
+
   const tail = snake.pop();
   squares[tail].classList.remove("snake");
   snake.unshift(snake[0] + direction);
   squares[snake[0]].classList.add("snake");
 
-}
+  }
 move();
 
 let movement = setInterval(move, 1000);
