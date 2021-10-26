@@ -23,7 +23,7 @@ h1 {
     text-align: center;
     letter-spacing: 2px;
 }
-
+/* making the gameboard */
 .grid {
     width: 200px;
     height: 200px;
@@ -49,7 +49,7 @@ h1 {
 .score {
     margin: 0;
 }
-
+/* making the gameboard */
 .cell {
     width: 20px;
     height: 20px;
