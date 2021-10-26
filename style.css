@@ -38,6 +38,7 @@ h1 {
     font-size: inherit;
     font-family: inherit;
     padding: 1em;
+    cursor: pointer;
 }
 
 .score-display {

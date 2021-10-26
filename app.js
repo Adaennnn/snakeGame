@@ -1,7 +1,7 @@
 const startBtn = document.querySelector(".start");
 const grid = document.querySelector(".grid");
 const squares = [];
-const snake = [2, 1, 0];
+let snake = [2, 1, 0];
 const width = 10;
 let direction = 1;
 let appleIndex = 0;
@@ -27,7 +27,18 @@ snake.forEach(index => squares[index].classList.add("snake"));
 
 
 function startGame() {
+
+  snake.forEach(index => squares[index].classList.remove("snake"));
+  squares[appleIndex].classList.remove("apple");
+  score = 0;
+  scoreDisplay.textContent = score;
+  intervalTime = 1000;
+  snake = [2, 1, 0];
+  snake.forEach(index => squares[index].classList.add("snake"));
+  generateApples();
+  clearInterval(timerId);
   timerId = setInterval(move, intervalTime);
+
 }
 
 function move() {
